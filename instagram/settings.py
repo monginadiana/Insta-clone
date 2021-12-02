@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +36,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'insta.apps.InstaConfig'
+    'insta',
+    'bootstrap5',
+    'cloudinary'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +58,18 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'instagram.urls'
+
+cloudinary.config( 
+  cloud_name = "mongina", 
+  api_key = "332865662615486", 
+  api_secret = "Mu5vzosaB_bVW-p8GaqQ0RHKtu4" 
+)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mongina',
+    'API_KEY': '332865662615486',
+    'API_SECRET': 'Mu5vzosaB_bVW-p8GaqQ0RHKtu4'
+}
 
 TEMPLATES = [
     {
