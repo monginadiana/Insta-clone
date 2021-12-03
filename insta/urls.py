@@ -5,5 +5,6 @@ from insta import views
 
 urlpatterns = [
     url(r'^$',views.index,name= 'index'),
+    url("profile/", views.profile),
 
 ]

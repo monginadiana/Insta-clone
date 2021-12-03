@@ -4,7 +4,8 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Post(models.Model):
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images', null=True)
+
 
     image = CloudinaryField('image')
     image_name = models.CharField(max_length=50)
