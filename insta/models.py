@@ -75,4 +75,13 @@ class Profile(models.Model):
         profile = cls.objects.filter(user=user)
         return profile
 
+class Likes(models.Model):
+    image = models.ForeignKey(Post, on_delete=models.CASCADE)
+    likes = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.likes
+
+
 
