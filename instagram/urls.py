@@ -21,7 +21,5 @@ from django.conf.urls import url,include
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^accounts/register/', RegistrationView.as_view(success_url='/'),
-         name='django_registration_register'),
     url(r'',include('insta.urls'))
 ]
