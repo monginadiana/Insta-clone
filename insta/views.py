@@ -6,4 +6,4 @@ from .models import *
 def index(request):
     images = Post.objects.all().order_by('-id')
  
-    return render(request, 'index.html', {'images': images})
+    return render(request, 'all-clone/index.html', {'images': images})
