@@ -25,49 +25,49 @@ def post(request):
         image.save_image()
         return redirect('/profile', {'success': 'Successfully posted'})
     else:
-        return render(request, 'profile.html', {'danger': 'posting Failed'})
+        return render(request, 'all-clone/profile.html', {'danger': 'posting Failed'})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     images = Post.objects.filter(user_id=current_user.id)
     profile = Profile.objects.filter(user_id=current_user.id).first()
-    return render(request, 'profile.html', {"images": images, "profile": profile})
+    return render(request, 'all-clone/profile.html', {"images": images, "profile": profile})
+ 
+# @login_required(login_url='/accounts/login/')
+# def like_image(request, id):
+#     likes = Likes.objects.filter(image_id=id).first()
+#     # check if the user has already liked the image
+#     if Likes.objects.filter(image_id=id, user_id=request.user.id).exists():
+#         likes.delete()
+#         image = Post.objects.get(id=id)
+#         if image.like_count == 0:
+#             image.like_count = 0
+#             image.save()
+#         else:
+#             image.like_count -= 1
+#             image.save()
+#         return redirect('/')
+#     else:
+#         likes = Likes(image_id=id, user_id=request.user.id)
+#         likes.save()
+#         image = Post.objects.get(id=id)
+#         image.like_count = image.like_count + 1
+#         image.save()
+#         return redirect('/')
 
-@login_required(login_url='/accounts/login/')
-def like_image(request, id):
-    likes = Likes.objects.filter(image_id=id).first()
-    # check if the user has already liked the image
-    if Likes.objects.filter(image_id=id, user_id=request.user.id).exists():
-        likes.delete()
-        image = Post.objects.get(id=id)
-        if image.like_count == 0:
-            image.like_count = 0
-            image.save()
-        else:
-            image.like_count -= 1
-            image.save()
-        return redirect('/')
-    else:
-        likes = Likes(image_id=id, user_id=request.user.id)
-        likes.save()
-        image = Post.objects.get(id=id)
-        image.like_count = image.like_count + 1
-        image.save()
-        return redirect('/')
 
-
-@login_required(login_url='/accounts/login/')
-def save_comment(request):
-    if request.method == 'POST':
-        comment = request.POST['comment']
-        image_id = request.POST['image_id']
-        image = Post.objects.get(id=image_id)
-        user = request.user
-        comment = Comments(comment=comment, image_id=image_id, user_id=user.id)
-        comment.save_comment()
-        image.comment_count = image.comment_count + 1
-        image.save()
-        return redirect('/')
-    else:
-        return redirect('/')   
+# @login_required(login_url='/accounts/login/')
+# def save_comment(request):
+#     if request.method == 'POST':
+#         comment = request.POST['comment']
+#         image_id = request.POST['image_id']
+#         image = Post.objects.get(id=image_id)
+#         user = request.user
+#         comment = Comments(comment=comment, image_id=image_id, user_id=user.id)
+#         comment.save_comment()
+#         image.comment_count = image.comment_count + 1
+#         image.save()
+#         return redirect('/')
+#     else:
+#         return redirect('/')   

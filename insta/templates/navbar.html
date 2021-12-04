@@ -1,42 +1,42 @@
-<nav id="ig" class="navbar navbar-expand-lg navbar-light bg-success">
+<body class="container-fluid">
+  <nav id="ig" class="navbar navbar-expand-lg navbar-light bg-success">
     <div class="container-fluid">
-      <a style ="color:black;" href="/admin" class="nav-item" active-color="black"><i class="fas fa-user-tie"></i>&nbsp;Admin</a>
+      <a class="navbar-brand" href="/"><h1> Instagram </h1></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Instagram</a>
-              </li>
           <li class="nav-item">
-            
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/profile/">Profile</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/accounts/logout/">Logout</a>
           </li>
 
+          {% else %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Profile</a>
-          </li>  
-        </ul>
-        <form  class="d-flex">
-          <input id ="search" style="font-weight:20;"  class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-dark" type="submit">Search</button>
+            <a class="nav-link active" aria-current="page" href="/accounts/login/">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/accounts/register/">Sign up</a>
+          </li>
+          <li class="nav-item">
+          </li>
+          {% endif %}
+
+        </ul>">
+          <input class="form-control me-2" type="search" name="search" placeholder="Search by name" aria-label="Search">
+          <button class="btn btn-outline-warning" type="submit">Search</button>
         </form>
       </div>
     </div>
-    <div class="col-sm-6 col-md-6">
-      {% if user.is_authenticated %}
-      <ul>
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
-        
-      </ul>
-      {% else %}
-      <li>
-        <a href="/logout">Logout</a>
-      </li>
-
-      {% endif %}
-    </div>
   </nav>
+
+  {% block content %}
+
+  {% endblock %}
