@@ -27,6 +27,11 @@
                             <span class="badge rounded-pill bg-dark text-white text-capitalize">{{ image.image_date|date }}</span>
                           </small>
                         </div>
+                        <div>
+{% comment %} 
+                        <a type="button" href="{% url 'like.image' image.id %}" class="btn btn-primary"><i class="bi bi-heart-fill"></i>  {{image.like_count }} Likes</a> {% endcomment %}
+
+                      </div>
                     </div>
                     </div>
                 </div>

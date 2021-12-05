@@ -34,27 +34,27 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     return render(request, 'all-clone/profile.html', {"images": images, "profile": profile})
  
-# @login_required(login_url='/accounts/login/')
-# def like_image(request, id):
-#     likes = Likes.objects.filter(image_id=id).first()
-#     # check if the user has already liked the image
-#     if Likes.objects.filter(image_id=id, user_id=request.user.id).exists():
-#         likes.delete()
-#         image = Post.objects.get(id=id)
-#         if image.like_count == 0:
-#             image.like_count = 0
-#             image.save()
-#         else:
-#             image.like_count -= 1
-#             image.save()
-#         return redirect('/')
-#     else:
-#         likes = Likes(image_id=id, user_id=request.user.id)
-#         likes.save()
-#         image = Post.objects.get(id=id)
-#         image.like_count = image.like_count + 1
-#         image.save()
-#         return redirect('/')
+@login_required(login_url='/accounts/login/')
+def like_image(request, id):
+    likes = Likes.objects.filter(image_id=id).first()
+    # check if the user has already liked the image
+    if Likes.objects.filter(image_id=id, user_id=request.user.id).exists():
+        likes.delete()
+        image = Post.objects.get(id=id)
+        if image.like_count == 0:
+            image.like_count = 0
+            image.save()
+        else:
+            image.like_count -= 1
+            image.save()
+        return redirect('/')
+    else:
+        likes = Likes(image_id=id, user_id=request.user.id)
+        likes.save()
+        image = Post.objects.get(id=id)
+        image.like_count = image.like_count + 1
+        image.save()
+        return redirect('/')
 
 
 # @login_required(login_url='/accounts/login/')
@@ -71,3 +71,17 @@ def profile(request):
 #         return redirect('/')
 #     else:
 #         return redirect('/')   
+
+# 
+
+@login_required(login_url='/accounts/login/')
+def search_post(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search').lower()
+        images = Post.search_image_name(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'all-clone/search.html', {'found': message, 'images': images})
+    else:
+        message = 'Not found'
+        return render(request, 'all-clone/search.html', {'danger': message})

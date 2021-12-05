@@ -31,13 +31,18 @@ class Post(models.Model):
         self.image_caption = new_caption
         self.save()
     
-      # search images using image name
     @classmethod
-    def search_by_image_name(cls, search_term):
+  # search images using image name
+    def search_image_name(cls, search_term):
         images = cls.objects.filter(
-            image_name__icontains=search_term)
-        return images
+        image_name__icontains=search_term)
+        return images    
 
+    def __str__(self):
+        return self.user.username       
+
+    def __str__(self):
+        return self.image_name
     #  get a single image using id
     @classmethod
     def get_single_image(cls, id):
