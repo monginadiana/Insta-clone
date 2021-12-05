@@ -1,5 +1,6 @@
 {% load bootstrap5 %}
-{% load staticfiles %}
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +17,8 @@
 
   {% block styles %}
     {% bootstrap_css %}
-    
+    <link rel="shortcut icon" href="{% static 'favicon.ico'%}">
+    <link rel="stylesheet" href="{% static 'css/insta.css' %}">
   {% endblock %}
 
 </head>

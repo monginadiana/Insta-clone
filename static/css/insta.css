@@ -1,0 +1,39 @@
+#ig{
+    font-family: 'Comforter Brush', cursive;
+    font-family: 'Smooch', cursive;
+    font-size: 30px;
+    
+}
+
+
+.phones{
+       
+        background: url("../images/phones__1_-removebg-preview.png");
+        background-size: auto;
+        background-repeat: no-repeat;
+        flex: 1;
+        background-size:50% ;
+        
+ }
+ .division{
+     height: auto;
+     width: 40%;
+   
+ }
+ .super{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     
+  
+  
+ }
+
+ /* .logs{ 
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     
+ } */
+
+ 

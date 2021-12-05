@@ -11,7 +11,7 @@ class Post(models.Model):
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(max_length=100)
     image_date = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    # profile = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     like_count = models.IntegerField(default=0, blank=True, null=True)
     comment_count = models.IntegerField(default=0,blank=True, null=True)
     
