@@ -1,4 +1,4 @@
-<body class="container-fluid">
+ {% comment %} <body class="container-fluid">
   <nav id="ig" class="navbar navbar-expand-lg navbar-light bg-success">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><h1> Instagram </h1></a>
@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">img src</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/profile/">Profile</a>
@@ -29,9 +29,9 @@
           </li>
           {% endif %}
 
-        </ul>">
+        </ul>
         <form class="d-flex" action="{% url 'search.post' %}">
-          <input class="form-control me-2" type="search" name="search" placeholder="Search by name" aria-label="Search">
+          <input class="form-control me-2" type="search" name="search" placeholder="Search by image name" aria-label="Search">
           <button class="btn btn-outline-warning" type="submit">Search</button>
         </form>
       </div>
@@ -40,4 +40,43 @@
 
   {% block content %}
 
-  {% endblock %}
+  {% endblock %}  {% endcomment %}
+
+
+  <nav id="ig" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- main nav -->
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <!-- logo -->
+        <a style="color:#000000;font-weight:lighter;font-family: Billabong;margin-left: 170px;font-size:25px;" class="navbar-brand logo" href="/">
+          Instagram
+        </a>
+        <!-- /logo -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search.post' %}">
+            <input style="height: 25px; font-size:15px;margin-left: 140px;width: 190px;background-color: rgba(228, 225, 225, 0.541);" name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
+       </form>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item ">
+                <a href="/"><img style="width:20px;height:20px;margin-left:30px" src="/static/images/home.png"></a>
+            </li>
+            <li class="nav-item ">
+                <a href="/"><img style="width:20px;height:20px;margin-left:30px" src="/static/images/like.png"></a>
+            </li>
+            <li class="nav-item ">
+                <a href="/profile/"><img style="width:20px;height:20px;margin-left:30px" src="/static/images/profile.png"></a>
+            </li>
+            <li class="nav-item ">
+                <a href="/logout/"><img style="width:20px;height:20px;margin-left:30px" src="/static/images/logout.png"></a>
+            </li>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>

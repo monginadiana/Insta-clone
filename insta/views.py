@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
+from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import UpdateImageForm
 import cloudinary
 import cloudinary.uploader
@@ -42,29 +44,25 @@ def profile(request):
         redirect('all-clone/profile')
     return render(request, 'all-clone/profile.html', {"images": images, "profile": profile, "form": form})
  
-# @login_required(login_url='/accounts/login/')
-# def like_image(request, id):
-#     likes = Likes.objects.filter(image_id=id).first()
-#     # check if the user has already liked the image
-#     if Likes.objects.filter(image_id=id, user_id=request.user.id).exists():
-#         likes.delete()
-#         image = Post.objects.get(id=id)
-#         if image.like_count == 0:
-#             image.like_count = 0
-#             image.save()
-#         else:
-#             image.like_count -= 1
-#             image.save()
-#         return redirect('/')
-#     else:
-#         likes = Likes(image_id=id, user_id=request.user.id)
-#         likes.save()
-#         image = Post.objects.get(id=id)
-#         image.like_count = image.like_count + 1
-#         image.save()
-#         return redirect('/')
+def like_image(request):
+    user = request.user
+    if request.method == 'POST':
+        image_id = request.POST.get('image_id')
+        image_pic =Post.objects.get(id=image_id)
+        if user in image_pic.liked.all():
+            image_pic.liked.add(user)
+        else:
+            image_pic.liked.add(user)    
+            
+        like,created =Likes.objects.get_or_create(user=user, image_id=image_id)
+        if not created:
+            if like.value =='Like':
+               like.value = 'Unlike'
+        else:
+               like.value = 'Like'
 
-
+        like.save()       
+    return redirect('index')
 # @login_required(login_url='/accounts/login/')
 # def save_comment(request):
 #     if request.method == 'POST':
@@ -93,3 +91,10 @@ def search_post(request):
     else:
         message = 'Not found'
         return render(request, 'all-clone/search.html', {'danger': message})
+
+def image(request,image_id):
+    try:
+        images = Post.objects.get(id = image_id)
+    except ObjectDoesNotExist:
+        raise Http404()
+    return render(request,"all-clone/Image.html", {"images":images})

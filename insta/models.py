@@ -12,7 +12,7 @@ class Post(models.Model):
     image_caption = models.TextField(max_length=100)
     image_date = models.DateTimeField(auto_now_add=True)
     # profile = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    like_count = models.IntegerField(default=0, blank=True, null=True)
+    liked= models.ManyToManyField(User,default=None,blank=True,related_name='liked')
     comment_count = models.IntegerField(default=0,blank=True, null=True)
     
     @classmethod
@@ -80,13 +80,18 @@ class Profile(models.Model):
         profile = cls.objects.filter(user=user)
         return profile
 
+
+LIKE_CHOICES={
+    ('Like','Like'),
+    ('Unlike','Unlike',)
+}
 class Likes(models.Model):
     image = models.ForeignKey(Post, on_delete=models.CASCADE)
-    likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES,default='like',max_length=10)
 
-    def __str__(self):
-        return self.likes
+    def _str_(self):
+        return self.value
     
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
