@@ -14,7 +14,7 @@ class Post(models.Model):
     # profile = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     liked= models.ManyToManyField(User,default=None,blank=True,related_name='liked')
     comment_count = models.IntegerField(default=0,blank=True, null=True)
-    
+  
     @classmethod
     def get_images_by_user(cls, user):
         images = cls.objects.filter(user=user)
@@ -90,7 +90,7 @@ class Likes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES,default='like',max_length=10)
 
-    def _str_(self):
+    def str(self):
         return self.value
     
 class Comments(models.Model):
@@ -103,5 +103,3 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.comment
-
-

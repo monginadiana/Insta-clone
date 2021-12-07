@@ -74,11 +74,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit">post pic</button>
-              </form>
+                {% load crispy_forms_tags %}
+...
+                <form method="post" enctype="multipart/form-data" style="margin-top: 1.3em; ">
+                    {{ form | crispy }}
+                    {% csrf_token %}
+                <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+            </form>
         </div>
         
       </div>
@@ -88,4 +90,24 @@
   
         
 </section>
+<div class = "images">
+    <h3>POSTS</h3>
+    {% for image in images %}
+    <div class="col-md-4">
+        
+            <div class="card mb-4">
+                <img src="{{ image.image.url }}" class="img-responsive" alt="Image">
+            </div>
+            
+    </div>
+    {% empty %}
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="alert alert-info" role="alert">
+            No posts!
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
 {% endblock %}

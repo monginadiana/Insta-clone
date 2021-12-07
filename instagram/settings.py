@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'insta',
     'bootstrap5',
     'cloudinary',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -63,6 +63,8 @@ def like_image(request):
 
         like.save()       
     return redirect('index')
+
+
 # @login_required(login_url='/accounts/login/')
 # def save_comment(request):
 #     if request.method == 'POST':
@@ -98,3 +100,6 @@ def image(request,image_id):
     except ObjectDoesNotExist:
         raise Http404()
     return render(request,"all-clone/Image.html", {"images":images})
+
+
+

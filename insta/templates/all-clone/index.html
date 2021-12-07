@@ -14,7 +14,7 @@
                 <div class="card-title">
                     <img src="/static/images/profile.png" class="rounded-circle border ml-3 mt-2  mr-3"
                          alt="" width="35" height="35">
-                    <a style="text-decoration: none;color:#000"href="" class="mt-4 user"></a>
+                    <a style="text-decoration: none;color:#000"href="/profile/" class="mt-4 user"></a>
                 </div>
                 <div class="card-body mb-4">
                     <a href=""><div class="card-text">
@@ -25,6 +25,16 @@
                     <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}">
                         <a href=""><img style="width:30px;height:30px;" src="/static/images/like.png" alt="like">
                         </a>
+                        <form action = "{% url 'like-image' %}"   method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name="image_id" value="{{pic.id}}">
+                            {%if user not in pic.liked.all %}
+                            <button class="btn btn-success" type="submit">like</button>
+                            {% else %}
+                             <button class="" type="submit">Un-like</button>
+                            {% endif %}
+                          </form>
+                            <strong>{{pic.liked.all.count}}Like(s)</strong>
                     </button>
                     <button class="btn btn-sm" type="submit"><a href="{"><img style="width:30px;height:30px;" src="/static/images/comment.png">
                     </a></button>
@@ -77,7 +87,7 @@
                             </div>
                         </div>
                         {% endfor %}
-                        <div class="text-secondary mt-5" style="font-size:x-small;">About.Help.Press.Api.Jobs.Privacy.Terms.<br>Locations.Top Accounts.Hashtags.Language<br><br>© 2021 Instagram From Vickie Shiraa</div>
+                        <div class="text-secondary mt-5" style="font-size:x-small;">About.Help.Press.Api.Jobs.Privacy.Terms.<br>Locations.Top Accounts.Hashtags.Language<br><br>© 2021 Instagram From Diana Mongina</div>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
