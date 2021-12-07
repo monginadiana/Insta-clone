@@ -64,7 +64,7 @@ The following languages have been used on this project:
 
 ## Screenshot
 
-  <img src="./static/img/1.png" width="80%">
+  <img src="./static/images/readme.png" width="80%">
 
 ## Known Bugs
 
