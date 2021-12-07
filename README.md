@@ -22,35 +22,35 @@ Instaclone is an Instagram web application to showcase pictures and designs. use
 
 - Run the following command to start the server using virtual environment
 
-python3.8 -m venv --without-pip dee
+ ## python3.8 -m venv --without-pip dee
 ```
-- To activate the virtual environment
+ To activate the virtual environment
 
 ```
-source virtual/bin/activate
+## source virtual/bin/activate
 ```
 
 ```
-pip install -r requirements.txt
+## pip install -r requirements.txt
 ```
 
-- To copy .env.example to .ENV
+To copy .env.example to .ENV
 
 ```
-cp .env.example .env
+## cp .env.example .env
 ```
 
-- Edit the .env file and replace the values with your own Cloudinary credentials and database credentials
+ Edit the .env file and replace the values with your own Cloudinary credentials and database credentials
 
-- To run the server
-
-```
-python manage.py runserver
+To run the server
 
 ```
-- Open the browser and navigate to http://127.0.0.1:8000/ to see the application running
+## python manage.py runserver
 
-  
+```
+Open the browser and navigate to http://127.0.0.1:8000/ to see the application running
+
+```
 ## Technologies used
 
 The following languages have been used on this project:
