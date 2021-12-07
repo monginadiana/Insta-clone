@@ -12,36 +12,39 @@
             {% for image in images %}
             <div class="card mb-4">
                 <div class="card-title">
-                    <img src="/static/images/profile.png" class="rounded-circle border ml-3 mt-2  mr-3"
+                    <img src="/static/images/profile.png" alt="profile"class="rounded-circle border ml-3 mt-2  mr-3"
                          alt="" width="35" height="35">
-                    <a style="text-decoration: none;color:#000"href="/profile/" class="mt-4 user"></a>
+                    <a style="text-decoration: none;color:#000"href="/profile/" class="mt-4 user">{{ image.user.username }}</a>
                 </div>
                 <div class="card-body mb-4">
-                    <a href=""><div class="card-text">
+                    <a href="/image/image_id"><div class="card-text">
                         <img src="{{image.image.url}}" class="card-img" width="100%"/>
                     </div></a>
                 </div>
                 <div class="iconic ml-2">
                     <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}">
-                        <a href=""><img style="width:30px;height:30px;" src="/static/images/like.png" alt="like">
+                        <a href=""><img style="width:30px;height:30px;" src="/static/images/heart.png" alt="like">
                         </a>
-                        <form action = "{% url 'like-image' %}"   method='POST'>
-                            {% csrf_token %}
-                            <input type="hidden" name="image_id" value="{{pic.id}}">
-                            {%if user not in pic.liked.all %}
-                            <button class="btn btn-success" type="submit">like</button>
-                            {% else %}
-                             <button class="" type="submit">Un-like</button>
-                            {% endif %}
-                          </form>
-                            <strong>{{pic.liked.all.count}}Like(s)</strong>
+                        <div>
+                            <form action = "{% url 'like-image' %}"   method='POST'>
+                              {% csrf_token %}
+                              <input type="hidden" name="image_id" value="{{image.id}}">
+                              {%if user not in image.liked.all %}
+                              <button class="btn btn-sm" type="submit">like</button>
+                             
+                              {% else %}
+                              
+                              {% endif %}
+                            </form>
+                        </button>
+                        <button class="btn btn-sm" type="submit"><a href="{"><img style="width:30px;height:30px;" src="/static/images/comment.png">
+                        </a></button>
                     </button>
-                    <button class="btn btn-sm" type="submit"><a href="{"><img style="width:30px;height:30px;" src="/static/images/comment.png">
+                    <button class="btn btn-sm" type="submit"><a href="/"><img style="width:30px;height:30px;" src="/static/images/share.png">
                     </a></button>
-                </button>
-                <button class="btn btn-sm" type="submit"><a href="/"><img style="width:30px;height:30px;" src="/static/images/share.png">
-                </a></button>
                 </div>
+                <span class="text-secondary" style="margin-left: 25px;">{{image.liked.all.count}}Like</span>
+                <span class="text-dark" style="margin-left: 25px;">{{image.image_name}}</span>
                 <span class="text-dark" style="margin-left: 25px;">{{image.image_caption}}</span>
                 <span class="ml-4 mb-1"><strong></strong></span>
                 <span class="text-secondary ml-4 viewall"><a href="">view all comment</a></span>
@@ -61,26 +64,24 @@
         <div class="col-md-4 mt-4 userinfo">
             <div class="row">
                 <div class="col-md-3 ml-2">
-                    <img class="rounded-circle user-img" src="">
+                    <img class="rounded-circle user-img" src="/static/images/profile.png" width="45px" height="45px">
+                    <span class=" inname text-secondary">{{ user.username}}</span>
                 </div>
-                <div class="col-md-6 mt-4 user-detail">
-                    <span class=" text-secondary"><a style="text-decoration: none;color: #000;" href=</a></span> <br>
-                    <span class=" inname text-secondary"></span>
-                </div>
+                
             </div>
             <div class="row" style="margin-top:12px;">
                 <div class="col-md-10">
-                    <div class="">
+                        <div class="">
                         <div class="text-secondary" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-weight: 900;font-size:small;">Suggestions For You</div>
                         {% for user in users %}
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-2 mr-3 mt-1 mb-2">
-                                    <img class="rounded-circle" src=""
+                                    <img class="rounded-circle" src="/static/images/profile.png"
                                     width="45px" height="45px">
                                 </div>
                                 <div class="col-md-6 mr-2 mt-2">
-                                    <span><a style="text-decoration: none; color:#000;" href=""></a></span>
+                                    <span><a style="text-decoration: none; color:#000;">{{user.username}}</a></span>
                                 </div>
                                 <div class="col-md-4">
                                 </div>
@@ -88,7 +89,7 @@
                         </div>
                         {% endfor %}
                         <div class="text-secondary mt-5" style="font-size:x-small;">About.Help.Press.Api.Jobs.Privacy.Terms.<br>Locations.Top Accounts.Hashtags.Language<br><br>© 2021 Instagram From Diana Mongina</div>
-                    </div>
+                    
                 </div>
                 <div class="col-md-2"></div>
             </div>

@@ -12,8 +12,10 @@ import cloudinary.api
 @login_required(login_url='/accounts/login/')
 def index(request):
     images = Post.objects.all().order_by('-id')
+    users= User.objects.exclude(id=request.user.id)
+    
  
-    return render(request, 'all-clone/index.html', {'images': images})
+    return render(request, 'all-clone/index.html', {'images': images, 'users':users})
 
 # @login_required(login_url='/accounts/login/')
 # def post(request):

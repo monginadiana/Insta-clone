@@ -51,7 +51,7 @@ python manage.py runserver
 - Open the browser and navigate to http://127.0.0.1:8000/ to see the application running
 
   
-## Technology Used
+## Technologies used
 
 The following languages have been used on this project:
 
@@ -68,11 +68,11 @@ The following languages have been used on this project:
 
 ## Known Bugs
 
-no known bugs
-the share might not work still work in progress
+No known bugs at the moment
+
 
 ## Support and contact details
-- Email: bensammwaniki@gmail.com
+- Email: dianahmongina2@gmail.com
 
 ## License
 

@@ -56,7 +56,7 @@
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search.post' %}">
+        <form class="navbar-form" role="searchform" action="{% url 'search.post' %}">
             <input style="height: 25px; font-size:15px;margin-left: 140px;width: 190px;background-color: rgba(228, 225, 225, 0.541);" name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
        </form>
         <div class="collapse navbar-collapse" id="navigation">

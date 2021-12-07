@@ -90,24 +90,30 @@
   
         
 </section>
-<div class = "images">
+
+<div class = "container">
     <h3>POSTS</h3>
-    {% for image in images %}
-    <div class="col-md-4">
-        
-            <div class="card mb-4">
-                <img src="{{ image.image.url }}" class="img-responsive" alt="Image">
+    <div class="card-columns">
+        {% for image in images %}
+        <div class="card">
+            <div class="card-body parent">
+
+
+                    <img  src="{{ image.image.url }}" class="card-img"  alt="Image">
+            
+
+                
+            
+              
+
             </div>
             
+        </div>
+       
+
+
     </div>
     {% empty %}
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="alert alert-info" role="alert">
-            No posts!
-        </div>
-    </div>
     {% endfor %}
 
-</div>
 {% endblock %}
